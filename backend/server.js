@@ -6,7 +6,7 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server, {
     cors: {
-        origin: "https://bldr-task.vercel.app", // Your React app's URL
+        origin: "https://bldr-task.vercel.app", // react app's url
         methods: ["GET", "POST"]
     }
 });
