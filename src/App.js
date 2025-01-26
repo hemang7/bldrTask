@@ -5,6 +5,7 @@ import "./index.css";
 const App = () => {
     const [tasks, setTasks] = useState([]);
     const [taskInput, setTaskInput] = useState("");
+    const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
 
     useEffect(() => {
         // initializing tasks when connected
@@ -23,6 +24,11 @@ const App = () => {
         };
     }, []);
 
+    useEffect(() => {
+        // Save darkMode to localStorage when it's toggled
+        localStorage.setItem("darkMode", darkMode);
+    }, [darkMode]);
+
     const addTask = () => {
         if (taskInput.trim()) {
             const newTask = { id: Date.now(), text: taskInput, completed: false };
@@ -40,33 +46,54 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 py-6">
-            <h1 className="text-4xl font-bold text-blue-600 mb-10">Real-Time Task Sharing App</h1>
+        <div className={`min-h-screen flex flex-col justify-center items-center py-6 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
+            <h1 className={`text-4xl font-bold mb-10 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                Real-Time Task Sharing App
+            </h1>
             
             <div className="flex space-x-4 mb-6">
                 <input
                     type="text"
-                    className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={`px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${darkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}
                     value={taskInput}
                     onChange={(e) => setTaskInput(e.target.value)}
                     placeholder="Enter a task"
                 />
                 <button
                     onClick={addTask}
-                    className="px-6 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    className={`px-6 py-2 rounded-md shadow-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-300 ${darkMode ? 'bg-blue-500 text-white' : 'bg-blue-500 text-white'}`}
                 >
                     Add Task
                 </button>
             </div>
 
-            <ul className="w-full max-w-xl ">
+            {/* Dark mode toggle switch */}
+            <div className="absolute top-6 right-6">
+                <label htmlFor="darkModeToggle" className="flex items-center cursor-pointer">
+                    <span className={`mr-2 text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Dark Mode</span>
+                    <input
+                        type="checkbox"
+                        id="darkModeToggle"
+                        className="hidden"
+                        checked={darkMode}
+                        onChange={() => setDarkMode(prev => !prev)}
+                    />
+                    <div className="w-12 h-6 bg-gray-300 rounded-full relative transition-colors duration-300">
+                        <div
+                            className={`w-6 h-6 bg-white rounded-full absolute top-0 left-0 transition-transform duration-300 ${darkMode ? 'translate-x-6' : ''}`}
+                        ></div>
+                    </div>
+                </label>
+            </div>
+
+            <ul className="w-full max-w-xl">
                 {tasks.map((task) => (
                     <li
                         key={task.id}
-                        className={`flex bg-pink-200 justify-between items-center p-4 mb-4 rounded-lg shadow-md ${task.completed ? 'bg-green-100' : 'bg-gray-100'}`}
+                        className={`flex bg-pink-200 justify-between items-center p-4 mb-4 rounded-lg shadow-md ${task.completed ? 'bg-green-100' : (darkMode ? 'bg-gray-800' : 'bg-gray-100')}`}
                     >
                         <span
-                            className={`text-lg ${task.completed ? 'line-through text-gray-500' : 'text-black'}`}
+                            className='text-lg text-black'
                         >
                             {task.text}
                         </span>
