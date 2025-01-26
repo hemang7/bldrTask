@@ -1,4 +1,5 @@
 Realtime Task Sharing App
+
 A real-time task management application that allows users to add, mark as complete, and delete tasks. This app uses Socket.IO for real-time communication and features a responsive React frontend paired with an Express backend.
 
 Problem Statement:
@@ -76,4 +77,4 @@ Backend: Deployed on Render, a flexible hosting platform supporting Node.js.
 
 
 GitHub Repository
-Access the full source code here: [GitHub Repository](https://github.com/hemang7/bldrTask/)
+Access the full source code here: (https://github.com/hemang7/bldrTask/)
