@@ -70,7 +70,7 @@ const App = () => {
             {/* Dark mode toggle switch */}
             <div className="absolute top-6 right-6">
                 <label htmlFor="darkModeToggle" className="flex items-center cursor-pointer">
-                    <span className={`mr-2 text-sm ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Dark Mode</span>
+                   
                     <input
                         type="checkbox"
                         id="darkModeToggle"
