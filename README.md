@@ -45,7 +45,7 @@ npm install
 Start the server:
 npm start
 
-The backend will run on http://localhost:9000 (in the source code it has been changed to where the backend is hosted)
+The backend will run on http://localhost:9000 (in the source code it has been changed to where the backend is hosted i.e. render)
 
 Frontend Setup
 
@@ -58,7 +58,7 @@ npm install
 Start the React development server:
 npm start
 
-The frontend will run on http://localhost:3000 (in the source code it has been changed to where the backend is hosted)
+The frontend will run on http://localhost:3000 (in the source code it has been changed to where the frontend is hosted i.e. vercel)
 
 
 Open the frontend in a browser and interact with the task manager:
