@@ -41,7 +41,7 @@ const App = () => {
 
     return (
         <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 py-6">
-            <h1 className="text-4xl font-bold text-blue-600 mb-10">Real-Time Task Sharing App</h1>
+            <h1 className="text-4xl font-bold text-blue-600 mb-10">Real-Time Task Collaboration</h1>
             
             <div className="flex space-x-4 mb-6">
                 <input
