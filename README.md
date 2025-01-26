@@ -17,14 +17,17 @@ Use Socket.IO for event-driven communication to update tasks in real-time.
 Organize frontend/backend directories for maintainable code.
 Deploy the backend on Render and the frontend on Vercel for seamless hosting.
 Add a CORS middleware in the backend to handle cross-origin requests securely.
+
 Features
 Real-time Updates: Add, complete, and delete tasks instantly across all users.
 Responsive Design: Optimized for both desktop and mobile.
 Socket.IO Integration: Ensures low-latency communication.
 Task Persistence: Tracks tasks in-memory during the session.
+
 Tech Stack
 Frontend: React, Vercel (Deployment)
 Backend: Node.js, Express, Socket.IO, Render (Deployment)
+
 Prerequisites
 Before you begin, ensure you have the following installed:
 
