@@ -1,4 +1,4 @@
-Task Manager App
+Realtime Task Sharing App
 A real-time task management application that allows users to add, mark as complete, and delete tasks. This app uses Socket.IO for real-time communication and features a responsive React frontend paired with an Express backend.
 
 Problem Statement:
