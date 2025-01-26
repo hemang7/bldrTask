@@ -68,6 +68,7 @@ Delete tasks.
 Open multiple tabs to test real-time updates across sessions.
 
 Deployed Versions
+
 Frontend: Deployed on Vercel (https://bldr-task.vercel.app/)
 
 Backend: Deployed on Render (https://bldrtask.onrender.com)
