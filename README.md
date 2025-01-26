@@ -8,7 +8,9 @@ Solution:
 The solution leverages Socket.IO for real-time communication between the frontend and backend, ensuring seamless task synchronization across users. The backend is built with Express and handles both task management and socket communication. The React frontend provides an intuitive UI for users to interact with tasks. The app follows a modular approach:
 
 Frontend (React): Handles user interactions and task display.
+
 Backend (Express & Socket.IO): Manages task storage and emits real-time updates.
+
 Thought Process:
 Use Socket.IO for event-driven communication to update tasks in real-time.
 Organize frontend/backend directories for maintainable code.
