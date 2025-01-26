@@ -107,7 +107,7 @@ const App = () => {
                                     />
                                 )}
                                 <img
-                                    src="https://64.media.tumblr.com/0d11c8d4274ccf7b67ccf560fd24eae8/tumblr_p6jbo7LJbZ1x5g9ago2_500.jpg"
+                                    src="https://i.pinimg.com/1200x/0f/63/d0/0f63d03a6f31ae83f8153c845ab95bcb.jpg"
                                     alt="Delete"
                                     onClick={() => deleteTask(task.id)}
                                     className="w-8 h-8 cursor-pointer rounded-full hover:opacity-80"
