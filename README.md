@@ -1,6 +1,6 @@
 Real-Time Task Collaboration App
 
-This is a rReal-Time Task Collaboration application built using React for the frontend and Node.js with Socket.IO for the backend. The app allows users to add, mark as complete, and delete tasks in real time with updates synchronized across all connected clients.
+This is a Real-Time Task Collaboration application built using React for the frontend and Node.js with Socket.IO for the backend. The app allows users to add, mark as complete, and delete tasks in real time with updates synchronized across all connected clients.
 
 Features
 
