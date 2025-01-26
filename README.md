@@ -29,6 +29,35 @@ Node.js (v16+)
 npm or yarn
 
 
+Setup Instructions
+
+Backend Setup
+Navigate to the backend directory:
+
+cd backend
+
+Install dependencies:
+npm install
+
+Start the server:
+npm start
+
+The backend will run on http://localhost:9000 (in the source code it has been changed to where the backend is hosted)
+
+Frontend Setup
+
+Navigate to the frontend directory:
+cd frontend
+
+Install dependencies:
+npm install
+
+Start the React development server:
+npm start
+
+The frontend will run on http://localhost:3000 (in the source code it has been changed to where the backend is hosted)
+
+
 Open the frontend in a browser and interact with the task manager:
 Add tasks.
 Mark tasks as complete.
