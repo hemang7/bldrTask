@@ -27,13 +27,15 @@ const TaskItem = ({ task, darkMode, markTaskComplete, deleteTask }) => (
     key={task.id}
     className={`flex justify-between items-center p-4 mb-4 rounded-lg shadow-md ${
       task.completed
-        ? "bg-green-100 line-through text-gray-500"
+        ? "bg-green-100 text-gray-500"
         : darkMode
         ? "bg-gray-800 text-white"
         : "bg-gray-100 text-black"
     }`}
   >
-    <span className="text-lg">{task.text}</span>
+    <span className={`text-lg ${task.completed ? "line-through" : ""}`}>
+      {task.text}
+    </span>
     <div className="flex space-x-2">
       {!task.completed && (
         <button
@@ -52,6 +54,7 @@ const TaskItem = ({ task, darkMode, markTaskComplete, deleteTask }) => (
     </div>
   </li>
 );
+
 
 const DarkModeToggle = ({ darkMode, setDarkMode }) => (
   <div className="absolute top-6 right-6 sm:top-4 sm:right-4">
@@ -82,7 +85,7 @@ const App = () => {
   );
 
   useEffect(() => {
-    // Fetch tasks from server
+    // fetch tasks from server
     const initializeTasks = (tasks) => {
       setTasks(tasks.sort((a, b) => b.id - a.id));
     };
@@ -111,10 +114,16 @@ const App = () => {
 
   const markTaskComplete = (taskId) => {
     socket.emit("mark-task-complete", taskId);
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, completed: true } : task
+      )
+    );
   };
 
   const deleteTask = (taskId) => {
     socket.emit("delete-task", taskId);
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
   };
 
   return (
@@ -147,7 +156,7 @@ const App = () => {
         <ul>
           {tasks.map((task) => (
             <TaskItem
-              key={task.id}
+              key={task.id} // Key assigned here
               task={task}
               darkMode={darkMode}
               markTaskComplete={markTaskComplete}
