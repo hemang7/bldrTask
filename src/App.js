@@ -25,30 +25,30 @@ const TaskInput = ({ taskInput, setTaskInput, addTask, darkMode }) => (
 const TaskItem = ({ task, darkMode, markTaskComplete, deleteTask }) => (
   <li
     key={task.id}
-    className={`flex bg-pink-200 justify-between items-center p-4 mb-4 rounded-lg shadow-md ${
+    className={`flex justify-between items-center p-4 mb-4 rounded-lg shadow-md ${
       task.completed
         ? "bg-green-100 line-through text-gray-500"
         : darkMode
-        ? "bg-gray-800 text-black"
+        ? "bg-gray-800 text-white"
         : "bg-gray-100 text-black"
     }`}
   >
     <span className="text-lg">{task.text}</span>
     <div className="flex space-x-2">
       {!task.completed && (
-        <img
-          src="https://ih1.redbubble.net/image.700338378.3966/raf,360x360,075,t,fafafa:ca443f4786.u2.jpg"
-          alt="Complete"
+        <button
           onClick={() => markTaskComplete(task.id)}
-          className="w-8 h-8 cursor-pointer rounded-full hover:opacity-80"
-        />
+          className="px-4 py-2 bg-green-500 text-white rounded-md hover:opacity-80 focus:outline-none"
+        >
+          Completed
+        </button>
       )}
-      <img
-        src="https://i.pinimg.com/1200x/0f/63/d0/0f63d03a6f31ae83f8153c845ab95bcb.jpg"
-        alt="Delete"
+      <button
         onClick={() => deleteTask(task.id)}
-        className="w-8 h-8 cursor-pointer rounded-full hover:opacity-80"
-      />
+        className="px-4 py-2 bg-red-500 text-white rounded-md hover:opacity-80 focus:outline-none"
+      >
+        Delete
+      </button>
     </div>
   </li>
 );
