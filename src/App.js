@@ -48,7 +48,7 @@ const App = () => {
     return (
         <div className={`min-h-screen flex flex-col justify-start items-center py-6 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
             <h1 className={`text-4xl font-bold mb-10 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-                Besti Todooo
+                Bestie Todooo
             </h1>
             
             <div className="flex space-x-4 mb-6">
