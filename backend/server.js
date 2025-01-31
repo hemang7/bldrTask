@@ -12,34 +12,34 @@ const io = new Server(server, {
 });
 
 
-// Store tasks in memory (no database)
+// store tasks in memory in an array
 let tasks = [];
 
 
 io.on("connection", (socket) => {
     console.log("A user connected");
 
-    // Send existing tasks to the newly connected client
+    // send existing tasks to the newly connected client
     socket.emit("initialize-tasks", tasks);
 
-    // Add a task
+    // add a task
     socket.on("add-task", (task) => {
         tasks.push(task);
-        io.emit("update-tasks", tasks); // Broadcast updated task list
+        io.emit("update-tasks", tasks); // broadcast updated task list
     });
 
-    // Mark a task as completed
+    // mark a task as completed
     socket.on("mark-task-complete", (taskId) => {
         tasks = tasks.map((task) => 
             task.id === taskId ? { ...task, completed: true } : task
         );
-        io.emit("update-tasks", tasks); // Broadcast updated task list
+        io.emit("update-tasks", tasks); 
     });
 
-    // Delete a task
+    // delete a task
     socket.on("delete-task", (taskId) => {
         tasks = tasks.filter((task) => task.id !== taskId);
-        io.emit("update-tasks", tasks); // Broadcast updated task list
+        io.emit("update-tasks", tasks); 
     });
 
     socket.on("disconnect", () => {
