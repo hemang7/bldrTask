@@ -5,45 +5,44 @@ import "./index.css";
 const App = () => {
     const [tasks, setTasks] = useState([]);
     const [taskInput, setTaskInput] = useState("");
-    const [darkMode, setDarkMode] = useState(() => JSON.parse(localStorage.getItem("darkMode")) || false);
-    const [inputError, setInputError] = useState(false);
+    const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
 
     useEffect(() => {
-        const handleInitializeTasks = (initialTasks) => setTasks(initialTasks);
-        const handleUpdateTasks = (updatedTasks) => setTasks(updatedTasks);
+        // Initializing tasks when connected
+        socket.on("initialize-tasks", (initialTasks) => {
+            setTasks(initialTasks);
+        });
 
-        // Listen for initial and updated tasks
-        socket.on("initialize-tasks", handleInitializeTasks);
-        socket.on("update-tasks", handleUpdateTasks);
+        // Updating tasks when broadcasted by the server
+        socket.on("update-tasks", (updatedTasks) => {
+            setTasks(updatedTasks);
+        });
 
         return () => {
-            socket.off("initialize-tasks", handleInitializeTasks);
-            socket.off("update-tasks", handleUpdateTasks);
+            socket.off("initialize-tasks");
+            socket.off("update-tasks");
         };
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("darkMode", JSON.stringify(darkMode));
+        // Save darkMode preference in localStorage
+        localStorage.setItem("darkMode", darkMode);
     }, [darkMode]);
 
     const addTask = () => {
-        if (!taskInput.trim()) {
-            setInputError(true);
-            setTimeout(() => setInputError(false), 2000);
-            return;
+        if (taskInput.trim()) {
+            const newTask = { id: Date.now(), text: taskInput, completed: false };
+            socket.emit("add-task", newTask); // Emit add-task event
+            setTaskInput(""); // Clear input after adding task
         }
-        setInputError(false);
-        const newTask = { id: Date.now(), text: taskInput, completed: false };
-        socket.emit("add-task", newTask);
-        setTaskInput("");
     };
 
     const markTaskComplete = (taskId) => {
-        socket.emit("mark-task-complete", taskId);
+        socket.emit("mark-task-complete", taskId); // Emit mark-task-complete event
     };
 
     const deleteTask = (taskId) => {
-        socket.emit("delete-task", taskId);
+        socket.emit("delete-task", taskId); // Emit delete-task event
     };
 
     return (
@@ -55,17 +54,14 @@ const App = () => {
             <div className="flex space-x-4 mb-6">
                 <input
                     type="text"
-                    className={`px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 
-                        ${inputError ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'} 
-                        ${darkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}
+                    className={`px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${darkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}
                     value={taskInput}
                     onChange={(e) => setTaskInput(e.target.value)}
                     placeholder="Enter a task"
                 />
                 <button
                     onClick={addTask}
-                    className={`px-6 py-2 rounded-md shadow-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-300 
-                        ${darkMode ? 'bg-blue-500 text-white' : 'bg-blue-500 text-white'}`}
+                    className={`px-6 py-2 rounded-md shadow-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-300 ${darkMode ? 'bg-blue-500 text-white' : 'bg-blue-500 text-white'}`}
                 >
                     Add Task
                 </button>
@@ -83,23 +79,22 @@ const App = () => {
                     />
                     <div className="w-12 h-6 bg-gray-300 rounded-full relative transition-colors duration-300">
                         <div
-                            className={`w-6 h-6 bg-white rounded-full absolute top-0 left-0 transition-transform duration-300 
-                                ${darkMode ? 'translate-x-6' : ''}`}
+                            className={`w-6 h-6 bg-white rounded-full absolute top-0 left-0 transition-transform duration-300 ${darkMode ? 'translate-x-6' : ''}`}
                         ></div>
                     </div>
                 </label>
             </div>
 
             {/* Scrollable task list */}
-            <div className="w-full max-w-xl overflow-y-auto h-[calc(100vh-250px)]">
+            <div className="w-full max-w-xl overflow-y-auto" style={{ maxHeight: 'calc(100vh - 250px)' }}>
                 <ul>
                     {tasks.map((task) => (
                         <li
                             key={task.id}
                             className={`flex justify-between items-center p-4 mb-4 rounded-lg shadow-md 
-                                ${task.completed ? 'bg-green-100' : darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}
+                                ${darkMode ? "bg-gray-800" : "bg-gray-100"}`} // No green background
                         >
-                            <span className={`text-lg ${darkMode ? "text-white" : "text-black"}`}>
+                            <span className={`text-lg text-black ${task.completed ? "line-through" : ""}`}>
                                 {task.text}
                             </span>
 
