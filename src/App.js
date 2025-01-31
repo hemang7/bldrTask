@@ -93,7 +93,7 @@ const App = () => {
                             key={task.id}
                             className={`flex bg-pink-200 justify-between items-center p-4 mb-4 rounded-lg shadow-md ${task.completed ? 'bg-green-100' : (darkMode ? 'bg-gray-800' : 'bg-gray-100')}`}
                         >
-                            <span className={`text-lg ${task.completed ? 'line-through text-gray-500' : (darkMode ? 'text-white' : 'text-black')}`}>
+                            <span className={`text-lg text-black`}>
                                 {task.text}
                             </span>
 
