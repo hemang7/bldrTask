@@ -48,7 +48,7 @@ const App = () => {
     return (
         <div className={`min-h-screen flex flex-col justify-start items-center py-6 ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-black'}`}>
             <h1 className={`text-4xl font-bold mb-10 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-                Real-Time Task Sharing App
+                Besti Todooo
             </h1>
             
             <div className="flex space-x-4 mb-6">
@@ -93,7 +93,7 @@ const App = () => {
                             key={task.id}
                             className={`flex bg-pink-200 justify-between items-center p-4 mb-4 rounded-lg shadow-md ${task.completed ? 'bg-green-100' : (darkMode ? 'bg-gray-800' : 'bg-gray-100')}`}
                         >
-                            <span className={`text-lg text-black`}>
+                            <span className="text-lg text-black">
                                 {task.text}
                             </span>
 
