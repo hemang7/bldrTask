@@ -57,13 +57,13 @@ const App = () => {
                     className={`px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${darkMode ? 'bg-gray-800 text-white' : 'bg-white'}`}
                     value={taskInput}
                     onChange={(e) => setTaskInput(e.target.value)}
-                    placeholder="Enter a task"
+                    placeholder="what up buttercup!"
                 />
                 <button
                     onClick={addTask}
                     className={`px-6 py-2 rounded-md shadow-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-300 ${darkMode ? 'bg-blue-500 text-white' : 'bg-blue-500 text-white'}`}
                 >
-                    Add Task
+                    add
                 </button>
             </div>
 
