@@ -91,7 +91,7 @@ const App = () => {
                     {tasks.map((task) => (
                         <li
                             key={task.id}
-                            className={`flex justify-between items-center p-4 mb-4 rounded-lg shadow-md 
+                            className={`flex bg-pink-200 justify-between items-center p-4 mb-4 rounded-lg shadow-md 
                                 ${darkMode ? "bg-gray-800" : "bg-gray-100"}`} // No green background
                         >
                             <span className={`text-lg text-black ${task.completed ? "line-through" : ""}`}>
